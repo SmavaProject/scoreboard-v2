@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Header from './Header';
 import Player from './Player';
-
+import AddPlayerFrom from "./AddPlayerFrom";
 
 class App extends Component {
   state = {
@@ -30,10 +30,29 @@ class App extends Component {
     ]
   };
 
+  //player ID counter
+  prevPlayerID = 4;
+
   handleScoreChange = (index, delta) => {
     this.setState( prevState => ({
       score: prevState.players[index].score += delta
     }));
+  }
+
+  handleAddPlayer = name => {
+    this.setState(prevState => {
+      return {
+        players: [
+          //"spread" operator to merge existing players with a newly created
+          ...prevState.players,
+          {
+            name: name,
+            score: 0,
+            id: this.prevPlayerID += 1
+          }
+        ]
+      };
+    });
   }
 
   handleRemovePlayer = (id) => {
@@ -64,6 +83,8 @@ class App extends Component {
             removePlayer={this.handleRemovePlayer}           
           />
         )}
+
+        <AddPlayerFrom addPlayer={this.handleAddPlayer}/>
       </div>
     );
   }

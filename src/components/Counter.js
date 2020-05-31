@@ -11,7 +11,7 @@ const Counter = ({index, score, changeScore}) => {
     );
 }
 //validating prop types
-Counter.prototype = {
+Counter.propTypes = {
   index: PropTypes.number,
   score: PropTypes.number,
   changeScore: PropTypes.func

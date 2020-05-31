@@ -14,7 +14,7 @@ const Header = ({ players, title }) => {
     );
 }
 //validating props
-Header.prototype = {
+Header.propTypes = {
     title: PropTypes.string,
     players: PropTypes.arrayOf(PropTypes.object)
 }
